@@ -345,7 +345,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -619,6 +619,31 @@ require('lazy').setup({
         -- ts_ls = {},
         --
 
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                classRegex = {
+                  'tw`([^`]*)',
+                  'tw\\.style\\(([^)]*)\\)',
+                  'tw="([^"]*)',
+                  'tw={"([^"}]*)',
+                  'tw\\.\\w+`([^`]*)',
+                  'tw\\(.*?\\)`([^`]*)',
+                  { 'cva\\(([^)]*)\\)', '["\'`]([^"\'`]*).*?["\'`]' },
+                  { 'cx\\(([^)]*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                  { 'cn\\(([^)]*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                },
+              },
+              classAttributes = {
+                'class',
+                'className',
+                'ngClass',
+                'style',
+              },
+            },
+          },
+        },
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -918,8 +943,6 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
-
-      require('mini.icons').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,

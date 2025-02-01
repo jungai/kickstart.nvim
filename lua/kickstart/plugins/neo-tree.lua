@@ -33,6 +33,9 @@ return {
     vim.cmd [[Neotree close]]
   end,
   opts = {
+    window = {
+      position = 'float',
+    },
     filesystem = {
       filtered_items = {
         visible = false, -- when true, they will just be displayed differently than normal items
